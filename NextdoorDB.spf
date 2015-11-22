@@ -42,22 +42,26 @@
 		<key>session</key>
 		<dict>
 			<key>connectionEncoding</key>
-			<string>utf8</string>
+			<string>latin1</string>
 			<key>contentPageNumber</key>
 			<integer>1</integer>
 			<key>contentSelection</key>
 			<data>
-			YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFy
-			Y2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJX
-			TlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAF
-			gAdUdHlwZVRyb3dzXxAdU2VsZWN0aW9uRGV0YWlsVHlwZU5TSW5k
-			ZXhTZXTSFwsYGVxOU1JhbmdlQ291bnQQAIAG0hscHR5aJGNsYXNz
-			bmFtZVgkY2xhc3Nlc1pOU0luZGV4U2V0oh8gWk5TSW5kZXhTZXRY
-			TlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVk
-			QXJjaGl2ZXLRJidUZGF0YYABAAgAEQAaACMALQAyADcAQABGAE0A
-			VQBgAGcAagBsAG4AcQBzAHUAdwB8AIEAoQCmALMAtQC3ALwAxwDQ
-			ANsA3gDpAPIA9wEEAQcBGQEcASEAAAAAAAACAQAAAAAAAAAoAAAA
-			AAAAAAAAAAAAAAABIw==
+			YnBsaXN0MDDUAQIDBAUGNjdYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK0HCBUWFxgZHSQoLDA0VSRudWxs0wkK
+			CwwQFFdOUy5rZXlzWk5TLm9iamVjdHNWJGNsYXNzow0OD4ACgAOA
+			BKMREhOABYAGgAiADFR0eXBlVHJvd3NUa2V5c18QJlNlbGVjdGlv
+			bkRldGFpbFR5cGVQcmltYXJ5S2V5ZWREZXRhaWxz0wkKCxobHKCg
+			gAfSHh8gIVokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxl
+			RGljdGlvbmFyeaMgIiNcTlNEaWN0aW9uYXJ5WE5TT2JqZWN00goL
+			JSehJoAJgAvSCykqK1lOUy5zdHJpbmeAClNuaWTSHh8tLl8QD05T
+			TXV0YWJsZVN0cmluZ6MtLyNYTlNTdHJpbmfSHh8xMl5OU011dGFi
+			bGVBcnJheaMxMyNXTlNBcnJhedIeHyI1oiIjXxAPTlNLZXllZEFy
+			Y2hpdmVy0Tg5VGRhdGGAAQAIABEAGgAjAC0AMgA3AEUASwBSAFoA
+			ZQBsAHAAcgB0AHYAegB8AH4AgACCAIcAjACRALoAwQDCAMMAxQDK
+			ANUA3gD0APgBBQEOARMBFQEXARkBHgEoASoBLgEzAUUBSQFSAVcB
+			ZgFqAXIBdwF6AYwBjwGUAAAAAAAAAgEAAAAAAAAAOgAAAAAAAAAA
+			AAAAAAAAAZY=
 			</data>
 			<key>contentSortColIsAsc</key>
 			<true/>
@@ -65,6 +69,8 @@
 			<string>{{0, 0}, {1080, 538}}</string>
 			<key>isToolbarVisible</key>
 			<true/>
+			<key>table</key>
+			<string>neighbourhood</string>
 			<key>view</key>
 			<string>SP_VIEW_CUSTOMQUERY</string>
 			<key>windowVerticalDividerPosition</key>
@@ -79,147 +85,132 @@
 	<array/>
 	<key>queryHistory</key>
 	<array>
-		<string>create table `user`{
-  `uname` varchar(10) Not null primary key,
-  `email` varchar(40) not null,
-  `fullname` varchar(20) not null,
-  `streetadr1` VARCHAR(40) not null,
-  `streetadr2` VARCHAR(40),
-  `city` VARCHAR(30) not null,
-  `state` CHAR not null,
-  `zip` int not null,
-  `intro` TEXT,
-  `ppic` BLOB,
-}</string>
-		<string>create table `user`(
-  `uname` varchar(10) Not null primary key,
-  `password` varchar(10) Not null,
-  `email` varchar(40) not null,
-  `fullname` varchar(20) not null,
-  `streetadr1` VARCHAR(40) not null,
-  `streetadr2` VARCHAR(40),
-  `city` VARCHAR(30) not null,
-  `state` CHAR not null,
-  `zip` int not null,
-  `intro` TEXT,
-  `ppic` BLOB,
+		<string>alter table `blocks` add `sw_latitude` decimal(9,6) not null</string>
+		<string>alter table `neighbourhood` add `sw_latitude` decimal(9,6) not null</string>
+		<string>alter table `neighbourhood` add `sw_longitude` decimal(9,6) not null</string>
+		<string>alter table `blocks` add `sw_longitude` decimal(9,6) not null</string>
+		<string>alter table `blocks` change `longitude` `ne_longitude` decimal(9,6)</string>
+		<string>alter table `neighbourhood` change `longitude` `ne_longitude` decimal(9,6)</string>
+		<string>alter table `neighbourhood` change `latitude` `ne_latitude` decimal(9,6)</string>
+		<string>alter table `blocks` change `latitude` `ne_latitude` decimal(9,6)</string>
+		<string>alter table `blocks` change 'latitude' 'ne_latitude' decimal(9,6)</string>
+		<string>CREATE TABLE `user` (
+  `uid` int(6) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `fullname` varchar(20) NOT NULL,
+  `streetadr1` varchar(40) NOT NULL,
+  `streetadr2` varchar(40) DEFAULT NULL,
+  `city` varchar(30) NOT NULL,
+  `state` char(2) NOT NULL DEFAULT '',
+  `zip` int(5) NOT NULL,
+  `intro` text,
+  `ppic` blob,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
+		<string>/*Alterations:
+alter table `user` add `uid` int(6) NOT NULL unique;
+
+alter table `blocks` add foreign key(nid) references `neighbourhood`(nid);
+
+ALTER TABLE `relationship` 
+DROP FOREIGN KEY `relationship_ibfk_2`; 
+alter table `relationship` add CONSTRAINT `relationship_ibfk_2` foreign key (`uid2`) references `user`(`uid`) on delete CASCADE;
+alter table `m_request`
+add foreign key (`bid`) REFERENCES `blocks`(`bid`) on delete cascade;
+alter table `m_request`
+add foreign key (`bid`) REFERENCES `blocks`(`bid`) on delete set null;
+
+*/
+
+drop table `user`</string>
+		<string>/*Alterations:
+alter table `user` add `uid` int(6) NOT NULL unique;
+
+alter table `blocks` add foreign key(nid) references `neighbourhood`(nid);
+
+ALTER TABLE `relationship` 
+DROP FOREIGN KEY `relationship_ibfk_2`; 
+alter table `relationship` add CONSTRAINT `relationship_ibfk_2` foreign key (`uid2`) references `user`(`uid`) on delete CASCADE;
+alter table `m_request`
+add foreign key (`bid`) REFERENCES `blocks`(`bid`) on delete cascade;
+alter table `m_request`
+add foreign key (`bid`) REFERENCES `blocks`(`bid`) on delete set null;
+
+*/
+
+drop table user</string>
+		<string>create table `user_login` (
+	`uid` int(6) not null primary key,
+	`uname` varchar(10) not null unique,
+	`password` varchar(20) not null,
+	`last_login` timestamp default '0000-00-00 00:00:00',
+	foreign key (uid) references `user`(`uid`) on delete cascade 
 )</string>
-		<string>insert into `appliance` values ('refregirator','refregirator keeps your vegitables ever fresh'),('washing machine','washing machine keeps your cloths fresh and tidy')</string>
-		<string>create table orders (phone char(10),
-aname varchar(20),
-config varchar(20),
-o_time datetime,
-quantity int,
-price decimal(4,2),
-status varchar(10),
-primary key (phone, aname, config, o_time),
-foreign key (phone) references customer(phone),
-foreign key (aname, config) references catalog(aname, config)
+		<string>create table `user_login` (
+	`uid` int(6) not null primary key,
+	`uname` varchar(10) not null unique,
+	`password` varchar(20) not null,
+	`last_login` timestamp default '0000-00-00 00:00:00',
+	foreign key (uid) references `user`(`uid`) on delete cascade</string>
+		<string>create table `messages` (
+	`mid` bigint not null primary key,
+	`author` int(6) not null,
+	`m_body` TEXT,
+	`tid` bigint(20) not null,
+	`postedat` timestamp,
+	`image` blob,
+	`latitude` decimal(9,6),
+	`longitude` decimal(9,6),
+	 foreign key (`author`) references `user`(`uid`) on delete No action,
+	 foreign key (`tid`) references `threads`(`tid`) on delete cascade
 )</string>
-		<string>delete table orders</string>
-		<string>create table customer ( phone char(10) primary key,
-building_num int,
-street varchar(20),
-apartment varchar(20)
-);
-create table appliance ( aname varchar(20) primary key,
-description varchar (100)
-);
-create table catalog (aname varchar(20),
-config varchar (20),
-price decimal(4,2),
-status varchar(20),
-primary key (aname, config),
-foreign key (aname) references appliance(aname)
-);
-create table orders (phone char(10),
-aname varchar(20),
-config varchar(20),
-o_time datetime,
-quantity int,
-price decimal(4,2),
-status varchar(10),
-primary key (phone, aname, config, o_time),
-foreign key (phone) references customer(phone),
-foreign key (aname, configuration) references catalog(aname, config)
+		<string>create table `messages` (
+	`mid` bigint not null primary key,
+	`author` int(6) not null,
+	`m_body` TEXT,
+	`tid` bigint(20) not null,
+	`postedat` timestamp,
+	`image` blob,
+	`latitude` decimal(9,6),
+	`longitude` decimal(9,6),
+	 foreign key (`author`) references `user`(`uid`) on delete No action,
+	 foreign key (`tid`) referenecs `threads`(`tid`) on delete cascade
 )</string>
-		<string>CREATE TABLE `Inspections` (
-  `rest_id` int(11) unsigned NOT NULL,
-  `insp_id` int(11) unsigned NOT NULL,
-  `pen_tot` int(11) DEFAULT NULL,
-  `timedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`rest_id`,`Insp_id`,`timedate`),
-  FOREIGN KEY (rest_id) references Restraunts(`id`),
-  FOREIGN KEY (insp_id) references `Inspector`(`ins_id`)
-  ) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
-		<string>CREATE TABLE `Inspector` (
-  `ins_id` int(11) unsigned NOT NULL,
-  `name` varchar(20) NOT NULL DEFAULT '',
-  `hiring_date` date DEFAULT NULL,
-  PRIMARY KEY (`ins_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
-		<string>CREATE TABLE `Inspections` (
-  `rest_id` int(11) unsigned NOT NULL,
-  `Insp_id` int(11) unsigned NOT NULL,
-  `pen_tot` int(11) DEFAULT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
-		<string>CREATE TABLE `Restraunts` (
-  `id` int(11) unsigned NOT NULL,
-  `name` varchar(20) NOT NULL DEFAULT '',
-  `bldNo` int(11),
-  `street name` varchar(40) DEFAULT NULL,
-  `city` varchar(20) DEFAULT NULL,
-  `zip` int(5) unsigned DEFAULT NULL,
-  `phone_no` bigint(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
-		<string>CREATE TABLE `Restraunts` (
-  `id` int(11) unsigned NOT NULL,
-  `name` varchar(20) NOT NULL DEFAULT '',
-  `bldNo` int(11),
-  `street name` varchar(40) DEFAULT NULL,
-  `city` varchar(20) DEFAULT NULL,
-  `zip` int(5) unsigned DEFAULT NULL,
-  `phone_no` bigint(10) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
-		<string>CREATE TABLE `Owner` (
-  `id` int(11) unsigned NOT NULL,
-  `first name` varchar(20) NOT NULL DEFAULT '',
-  `last name` varchar(20) DEFAULT '',
-  `address` varchar(40) DEFAULT NULL,
-  `phone_no` bigint(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
-		<string>CREATE TABLE `Owner` (
-  `id` int(11) unsigned NOT NULL,
-  `first name` varchar(20) NOT NULL DEFAULT '',
-  `last name` varchar(20) DEFAULT '',
-  `address` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
-		<string>CREATE TABLE `Violations` (
-  `code` int(11) unsigned NOT NULL,
-  `desc` varchar(40) NOT NULL DEFAULT '',
-  `penalty` int(4) DEFAULT NULL,
-  PRIMARY KEY (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
-		<string>select `year`,COUNT(*)
-from movtaab
-group by `year`</string>
-		<string>insert into movtaab (`mid`,`title`,`year`) values (6672,'Minions',2015)</string>
-		<string>select `year`,COUNT(*)
-from movtaab
-group by `year`,mid</string>
-		<string>select `year`,COUNT(*)
-from movtaab
-group by `year`,middleint</string>
-		<string>select `year`,COUNT(DISTINCT *)
-from movtaab
-group by `year`</string>
-		<string>create view movtaab as 
-select mid,title,`year`
-from movie</string>
+		<string>create table `messages` (
+	`mid` bigint not null primary key,
+	`author` int(6) not null,
+	`m_body` TEXT,
+	`tid` bigint not null,
+	`postedat` timestamp,
+	`image` blob,
+	`latitude` decimal(9,6),
+	`longitude` decimal(9,6),
+	 foreign key (`author`) references `user`(`uid`) on delete No action,
+	 foreign key (`tid`) referenecs `threads`(`tid`) on delete cascade
+)</string>
+		<string>create table `threads` (
+	`tid` bigint not null primary key,
+	`subject` varchar(40) not null,
+	`scope` enum('personnel','block','neighbourhood','friends','neighbours') not null default 'block',
+	`scope_id` int(6) not null,
+	`start_time` timestamp default '0000-00-00 00:00:00'
+)</string>
+		<string>create table `f_request`(
+	`uid_requested_by` int(6) not null,
+	`uid_requested_of` int(6) not null,
+	`status` ENUM('waiting','accepted') not null default 'waiting',
+	primary key (`uid_requested_by`,`uid_requested_of`),
+	foreign key (`uid_requested_by`) references `user`(`uid`) on delete cascade,
+	foreign key (`uid_requested_of`) references `user`(`uid`) on delete cascade
+)</string>
+		<string>create table `f_request`(
+	`uid_requested_by` int(6) not null,
+	`uid_requested_of` int(6) not null,
+	`status` ENUM('waiting','accepted') not null default 'waiting',
+	primary key (`uid_requested_by`,`uid_requested_of`),
+	foreign key (`uid_requested_by`) references `user`(`uid`) on cascade delete,
+	foreign key (`uid_requested_of`) references `user`(`uid`) on cascade delete
+)</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>

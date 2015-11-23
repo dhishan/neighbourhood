@@ -13,4 +13,7 @@ UPDATE `NextdoorDB`.`user` SET
 `ppic` = <{ppic: }>
 WHERE `uid` = <{expr}>;
 
+-- sending block request
+INSERT INTO `NextdoorDB`.`m_request`(`uid`, `bid`, `uid1`, `uid2`, `uid3`, `acceptance_cnt`, `acceptedat`)
+VALUES ( , ,, ,,  , '0000-00-00 00:00:00');
 

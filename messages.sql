@@ -7,7 +7,7 @@ VALUES ( null, 'Test', 'personnel', '2', CURRENT_TIMESTAMP);
 INSERT INTO `NextdoorDB`.`messages` (`mid`, `author`, `m_body`, `tid`, `postedat`, `image`, `latitude`, `longitude`) VALUES (null, 1, 'WElcome to neighbourhood.com', LAST_INSERT_ID(), CURRENT_TIMESTAMP,'','','');
 
 -- Getting the thread id where the subject was the 'Test' into a variable val
-select tid from threads where subject like 'Test' limit 1 into @val;
+select tid from `NextdoorDB`.`threads` where subject like 'Test' limit 1 into @val;
 
 -- insert into the variable with val as the thread id.
 INSERT INTO `NextdoorDB`.`messages` (`mid`, `author`, `m_body`, `tid`, `postedat`, `image`, `latitude`, `longitude`) VALUES (null, '1' , 'This is the second message', @val, CURRENT_TIMESTAMP,'','','');

@@ -1,0 +1,10 @@
+h1 {
+  background: url(header.png) bottom center no-repeat;
+  text-align: center;
+  font-size: 1.5em;
+
+}
+
+body {
+  background: url(body.png);
+}

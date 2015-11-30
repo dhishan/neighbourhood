@@ -1,9 +1,10 @@
 <!-- login page -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<meta charset="utf-8">
-  <title>Login</title>
+	<script type="text/javascript" src="condition.js"></script>
+	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="login.css">
 </head>
 
@@ -12,10 +13,10 @@
 		Neighbour.com
 	</div>
 	<section class="loginform">
-		<form action="login.html" onsubmit="return  validateForm()" method="post">
+		<form action="login.html" id="login" onsubmit="return  validateForm()" method="post">
 		<ul>
 			<li>
-			<input type="text" name="username" placeholder="Username" />
+			<input type="text" name="username" id="user" placeholder="Username" required>
 			<span class="form_hint_uname">* Required</span>
 			</li>
 			<li>

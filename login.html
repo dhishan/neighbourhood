@@ -1,22 +1,34 @@
 <!-- login page -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-	<html xmlns="http://www.w3.org/1999/xhtml">
-	<body>
-		<head>
-			<script type="text/javascript" src="condition.js"></script>
-		</head>
-		<form action="login.html" id="login" onsubmit="return validateForm()" method="post">
-			Username
-			<input type="text" name= "username" placeholder="Username" id="user" required> <div id="error"></div>
-			<br>
-			Password 
-			<input type="text" name= "password" placeholder="Password" required>
-			<br>
-			<input type="Submit" name="commit" value="Login"> 
-			<br></form>
-			<form method"get" action="examplelogin.html">
-			<button type="Submit" name="commit" value="signin"> 
-			<br>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="condition.js"></script>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+<body>
+	<div class="pageHeader">
+		Neighbour.com
+	</div>
+	<section class="loginform">
+		<form action="login.html" id="login" onsubmit="return  validateForm()" method="post">
+		<ul>
+			<li>
+			<input type="text" name="username" id="user" placeholder="Username" required>
+			<span class="form_hint_uname">* Required</span>
+			</li>
+			<li>
+			<input type="text" name="password" placeholder="Password" required>
+			<span class="form_hint_password">* Required</span>
+			</li>
+			<li>
+			<input class="btn" type="Submit" name="commit" value="Login">
+		</li>
+		</ul>
 		</form>
-	</body>
-	</html>
+	</section>
+</body>
+
+</html>

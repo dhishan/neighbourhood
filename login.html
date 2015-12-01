@@ -6,22 +6,37 @@
 	<script type="text/javascript" src="condition.js"></script>
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="login.css">
+	<link href='https://fonts.googleapis.com/css?family=Varela+Round|Poiret+One|Averia+Sans+Libre|Josefin+Sans' rel='stylesheet' type='text/css'>
+	<!-- font-family: 'Rancho', cursive; -->
 </head>
 
 <body>
 	<div class="pageHeader">
-		Neighbour.com
+		Neighbourhood
 	</div>
 	<section class="loginform">
 		<form action="login.html" id="login" onsubmit="return  validateForm()" method="post">
 		<ul>
 			<li>
-			<input type="text" name="username" id="user" placeholder="Username" required>
+			<div id="login_text_div">
+				<span id="logintext">Sign in</span>
+			</div>
+			</li>
+			<li>
+			<hr>
+			</li>
+			<li>
+			<input type="text" name="username" id="username" placeholder="Username" required>
 			<span class="form_hint_uname">* Required</span>
 			</li>
 			<li>
-			<input type="text" name="password" placeholder="Password" required>
+			<input type="text" name="password" id="password" placeholder="Password" required>
 			<span class="form_hint_password">* Required</span>
+			</li>
+			<li>
+				<div id="signup_link">
+					<span>No account? <a href="url">Sign up</a></span>
+				</div>
 			</li>
 			<li>
 			<input class="btn" type="Submit" name="commit" value="Login">

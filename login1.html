@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<title> login </title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<script src="jquery.validate.js"></script>
+	<script>
+	$(function(){
+		$("#login").validate({
+			rules: {
+				username:{
+					required: true,
+					//Lettersandnumbers: true,
+					minlength: 3,
+					maxlength: 10
+				},
+				password:{
+					required: true,
+					minlength: 6,
+					maxlength: 20
+				}
+			}
+			//submitHandler: function(){
+			//	var data = $("#login").serialize();
+			//	$.post('datacheck.php',data,function(){
+			//	});	
+			//}
+		
+		});
+		
+	});
+	</script>
+	<body>
+		<form id="login" method = "post" action="datacheck.php">
+			<label for="name">Username </label>
+			<input type="text" id="name" name="username" />  <br />
+
+			<label for="Password">Password </label>
+			<input type="password" id="password" name="password"/> <br />
+
+ 
+			<input type="submit" value="Login"/>       <p><a href="signin.html">Signin</a></p>
+
+
+		</form>
+
+		<dev id="results"><div>
+	</body>
+</head>
+</html>

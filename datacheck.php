@@ -1,30 +1,23 @@
+<?php include('pdofile.php');?>
 <?php
 session_start();
 
 $username=$_REQUEST['username'];
-$password=$_REQUEST['password'];
+$password1=$_REQUEST['password'];
 
-$conn = new mysqli("localhost","root","", "nextdoordb");
-// Check connection
-	if ($conn->connect_error) {
-    	die("Connection failed: " . $conn->connect_error);
-	}
+	$sql="select uname,password from user_login where uname=? and password=?";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute(array($username,$password1));
+//	$stmt->store_result();
+	$num_of_rows=$stmt->rowCount();
+	$results=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$stmt = $conn->prepare("select uname,password from user_login where uname=? and password=?");
-	$stmt->bind_result($user,$pass);
-	while($stmt->fetch())
+	if($stmt->rowCount())
 	{
-		if($username == $user)
-	{
-		echo ("Welcome back to Appliance Store!");
-	}
 
-	else echo ("Welcome to Appliance Store! Have a great first experience!");
+			echo 'Name: '.$username.'<br>';
+      echo 'Username: '.$password1.'<br>';
 
 	}
-$stmt->close();
-
+		else {header("location:login1.php?flag=1");}
 ?>
-</body>
-
-</html>

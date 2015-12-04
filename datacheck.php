@@ -1,12 +1,4 @@
-
-<html>
-<head>
-	<title>siningining</title>
-</head>
-<body>
-
 <?php
-
 session_start();
 
 $username=$_REQUEST['username'];
@@ -25,8 +17,8 @@ $conn = new mysqli("localhost","root","", "nextdoordb");
 		if($username == $user)
 	{
 		echo ("Welcome back to Appliance Store!");
-	}			
-		
+	}
+
 	else echo ("Welcome to Appliance Store! Have a great first experience!");
 
 	}
@@ -36,4 +28,3 @@ $stmt->close();
 </body>
 
 </html>
-

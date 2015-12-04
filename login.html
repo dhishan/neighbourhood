@@ -3,7 +3,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<script type="text/javascript" src="condition.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<script src="jquery.validate.js"></script>
+	<script src="validate.js"></script>
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="login.css">
 	<link href='https://fonts.googleapis.com/css?family=Varela+Round|Poiret+One|Averia+Sans+Libre|Josefin+Sans' rel='stylesheet' type='text/css'>
@@ -15,7 +17,7 @@
 		Neighbourhood
 	</div>
 	<section class="loginform">
-		<form action="login.html" id="login" onsubmit="return  validateForm()" method="post">
+		<form action="login.html" id="login" name="formlogin" onsubmit="return test()" method="post">
 		<ul>
 			<li>
 			<div id="login_text_div">
@@ -26,17 +28,19 @@
 			<hr>
 			</li>
 			<li>
-			<input type="text" name="username" id="username" placeholder="Username" required>
+			<input type="text" name="username" id="username" placeholder="Username" autofocus required=""/>
 			<span class="form_hint_uname">* Required</span>
 			</li>
 			<li>
-			<input type="text" name="password" id="password" placeholder="Password" required>
+			<input required type="text" name="password" id="password" placeholder="Password"/>
 			<span class="form_hint_password">* Required</span>
 			</li>
 			<li>
 				<div id="signup_link">
 					<span>No account? <a href="url">Sign up</a></span>
 				</div>
+			</li>
+			<li id="errorsignup">
 			</li>
 			<li>
 			<input class="btn" type="Submit" name="commit" value="Login">

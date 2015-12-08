@@ -1,6 +1,6 @@
 /* $siteWidth: 1366px;*/
 html {
-  background-image: url("images/background.jpg");
+  background-image: url("../images/background.jpg");
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: center center;              /* optional, center the image */

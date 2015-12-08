@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style/signup.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <!-- <script src="jquery.validate.js"></script> -->
+  <!-- <script src="form-validator/jquery.form-validator.min.js"></script> -->
+  <script src="JSScripts/signup_js.js"></script>
+</head>
+
+<body>
+  <div id="formdivid" class="box blurred-bg">
+    <form id="registration-form" method="post" action=" ">
+      <ul>
+        <li>
+          <div id="signuplabel">
+            <span>Sign up</span>
+          </div>
+        </li>
+        <li>
+          <hr>
+        </li>
+        <li>
+          <label for="username">Username </label>
+          <input type="text" id="name" name="Username" required/>
+          <img id="uvalid" src="" width="12px" height="12px" display="inline">
+          <div>
+            <span class="errormsg" id="errormsguname" ></span>
+          </div>
+        </li>
+        <li>
+          <label for="Password">Password </label>
+          <input type="password" id="password" name="password" />
+          <img id="pv" src="" width="12px" height="12px" display="inline">
+        </li>
+        <li>
+          <label for="Password">Retype Password </label>
+          <input type="password" id="password_re" name="password_re" />
+          <img id="ppv" src="" width="12px" height="12px" display="inline">
+          <div>
+            <span class="errormsg" id="errormsgpassword_re" ></span>
+          </div>
+          </li>
+        <li>
+          <label for="fullname">Full Name </label>
+          <input type="text" id="fullname" name="Fullname" />
+
+        </li>
+        <li>
+          <label for="email">E-mail</label>
+          <input type="text" id="email" name="email"/>
+          <img id="ev" src="" width="12px" height="12px" display="inline">
+          <div>
+            <span class="errormsgemail" id="errormsgpassword_re" ></span>
+          </div>
+          </li>
+        <!-- <li>
+          <label for="streetadr1">Street address line 1</label>
+          <input type="text" id="streetadr1" name="streetadr1" />
+          <br />
+        </li>
+        <li>
+          <label for="streetadr2">Street address line 2</label>
+          <input type="text" id="streetadr2" name="streetadr2" />
+        </li>
+        <li>
+
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" />
+        </li>
+        <li>
+
+          <label for="state">State</label>
+          <input type="text" id="state" name="state" />
+        </li>
+        <li>
+
+          <label for="zip">zip</label>
+          <input type="number" id="zip" name="zip" />
+        </li> -->
+        <li>
+          <input type="button" value="Signup" id="btn" />
+        </li>
+
+    </form>
+  </section>
+</body>
+
+</html>

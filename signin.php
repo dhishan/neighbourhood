@@ -20,13 +20,12 @@
 					required: true,
 					email: true,
 					remote:"checkemail.php"
-
-},
+				},
 				streetadr1: {
 					required: true
 				},
 
-				streetadr2: { 
+				streetadr2: {
 					required: true
 
 				},
@@ -53,7 +52,7 @@
 					maxlength: 20
 				}
 			}
-			
+
 		});
 
 		$.validator.addMethod('Lettersandnumbers',function(value,element){
@@ -82,9 +81,9 @@
 
 			<label for="city">City</label>
 			<input type="text" id="city" name="city"/> <br />
-		
+
 			<label for="state">State</label>
-			<input type="text" id="state" name="state"/> <br /> 
+			<input type="text" id="state" name="state"/> <br />
 
 			<label for="zip">zip</label>
 			<input type="number" id="zip" name="zip"/> <br />
@@ -93,7 +92,7 @@
 			<input type="password" id="password" name="password"/> <br />
 
 
-			<input type="submit" value="Signup"/> 
+			<input type="submit" value="Signup"/>
 
 		</form>
 

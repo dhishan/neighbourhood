@@ -1,6 +1,5 @@
 <?php include('pdofile.php');?>
 <?php
-
 session_start();
 
 $username=$_REQUEST['username'];
@@ -16,17 +15,9 @@ $password1=$_REQUEST['password'];
 	if($stmt->rowCount())
 	{
 
-		echo 'Name: '.$username.'<br>';
-        echo 'Username: '.$password1.'<br>';
-		
+			echo 'Name: '.$username.'<br>';
+      echo 'Username: '.$password1.'<br>';
+
 	}
 		else {header("location:login1.php?flag=1");}
-		
-	 
-
-
-	
-
-
 ?>
-

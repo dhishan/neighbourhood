@@ -89,7 +89,7 @@ hr{
 }
 
 
-.loginform #username,.loginform #password {
+.loginform #usernameid,.loginform #passwordid {
   /*height:2.4em;
   width:18em;*/
   display: inline-block;
@@ -204,3 +204,7 @@ hr{
    background-image: -ms-linear-gradient(top, #5e5e5e 0%, #f0f0f0 100%);
    color: #fff;
    }
+
+#errorsignup {
+  color: red;
+}

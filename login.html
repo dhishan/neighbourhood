@@ -3,11 +3,19 @@
 
 <head>
 	<meta charset="utf-8">
-	<script type="text/javascript" src="condition.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" > </script>
+	<!-- <script src="jquery.validate.js"></script> -->
+	<script src="validate.js"></script>
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="login.css">
 	<link href='https://fonts.googleapis.com/css?family=Varela+Round|Poiret+One|Averia+Sans+Libre|Josefin+Sans' rel='stylesheet' type='text/css'>
 	<!-- font-family: 'Rancho', cursive; -->
+	<!-- <script>
+	function test(){
+		alert("dhishan Test");
+		return false;
+	}
+	</script> -->
 </head>
 
 <body>
@@ -15,7 +23,7 @@
 		Neighbourhood
 	</div>
 	<section class="loginform">
-		<form action="login.html" id="login" onsubmit="return  validateForm()" method="post">
+		<form  id="login" method="post" name="loginform">
 		<ul>
 			<li>
 			<div id="login_text_div">
@@ -26,24 +34,25 @@
 			<hr>
 			</li>
 			<li>
-			<input type="text" name="username" id="username" placeholder="Username" required>
+			<input type="text" name="username" id="usernameid" placeholder="Username" autofocus required=""/>
 			<span class="form_hint_uname">* Required</span>
 			</li>
 			<li>
-			<input type="text" name="password" id="password" placeholder="Password" required>
+			<input required type="password" name="password" id="passwordid" placeholder="Password"/>
 			<span class="form_hint_password">* Required</span>
 			</li>
 			<li>
 				<div id="signup_link">
-					<span>No account? <a href="url">Sign up</a></span>
+					<span>No account? <a href="signup.html">Sign up</a></span>
 				</div>
 			</li>
+			<li id="errorsignup">
+			</li>
 			<li>
-			<input class="btn" type="Submit" name="commit" value="Login">
+			<input class="btn" type="button" id="btni" name="commit" value="Login" onclick="validatefunc()" />
 		</li>
 		</ul>
 		</form>
 	</section>
 </body>
-
 </html>

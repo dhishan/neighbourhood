@@ -1,11 +1,11 @@
 <?php
-
+session_start();
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $dbname = "nextdoordb";
-
+$dbname_dhishan = 'NextdoorDB';
 try{
 
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

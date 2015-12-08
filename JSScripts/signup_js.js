@@ -6,7 +6,7 @@ $(document).ready(function() {
     imd.src = "images/waiting.svg";
     try{
       var uname1 = $('#name').val();
-      $.post("signup_validity.php",{unamecheck:uname1},
+      $.post("phpScripts/signup_validity.php",{unamecheck:uname1},
       function(data){
         if(data == "false"){
           //user with that username already exists
@@ -44,10 +44,10 @@ $(document).ready(function() {
   $('#email').keyup(function(){
     var imde = document.getElementById("ev");
     imde.src = "images/waiting.svg";
-    
+
     try{
       var email1 = $('#email').val();
-      $.post("signup_validity.php",{emailcheck:email1},
+      $.post("phpScripts/signup_validity.php",{emailcheck:email1},
       function(data){
         if(data == "false"){
           //user with that username already exists

@@ -2,7 +2,7 @@ function validatefunc(){
   try{
   var unameValue = $('#usernameid').val();
   var passwordValue = $('#passwordid').val();
-  $.post('datacheck.php',{postuname:unameValue,postpassword:passwordValue},
+  $.post('phpScripts/datacheck.php',{postuname:unameValue,postpassword:passwordValue},
   function(data){
     if(data == "false"){
       $('#errorsignup').html("Invalid username or password");

@@ -1,13 +1,11 @@
 <html>
-<head></head>
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="test.js"></script>
+</head>
 <body>
-
-<object type="text/html" id="htmlFrame" style="border: none;" standby="loading" width="100%"></object>
-
-<script type="text/javascript">
-  var element = document.getElementById("htmlFrame");
-  element.setAttribute("data", "attributeValue");
-</script>
-
+  <form action="" method="post">
+    <input id="uname" name="unamecheck" type="text">
+    <input type="button" value="submit" onclick="return checkunameexist()">
 </body>
 </html>

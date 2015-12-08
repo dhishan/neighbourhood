@@ -23,3 +23,38 @@ ADD CONSTRAINT `membership_ibfk_2`
   REFERENCES `NextdoorDB`.`blocks` (`bid`)
   ON DELETE CASCADE
   ON UPDATE NO ACTION;
+  
+-- stored function for calling uname check
+  
+  USE `NextdoorDB`;
+DROP function IF EXISTS `uname_check`;
+
+DELIMITER $$
+USE `NextdoorDB`$$
+CREATE FUNCTION `uname_check` (cuname VARCHAR(10))
+RETURNS INTEGER
+BEGIN
+DECLARE ret INTEGER;
+SELECT COUNT(*) INTO ret FROM `user_login` where uname = cuname;
+RETURN ret;
+END$$
+
+DELIMITER ;
+
+-- email field 80
+
+
+USE `NextdoorDB`;
+DROP function IF EXISTS `check_email`;
+
+DELIMITER $$
+USE `NextdoorDB`$$
+CREATE FUNCTION `check_email` (email1 VARCHAR(80))
+RETURNS INTEGER
+BEGIN
+DECLARE val INTEGER;
+SELECT COUNT(*) INTO val from `user` where email=email1;
+RETURN val;
+END$$
+
+DELIMITER ;

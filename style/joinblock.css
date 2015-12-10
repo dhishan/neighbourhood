@@ -1,0 +1,136 @@
+html, body {
+    height: 100%; margin: 10; padding: 0;
+}
+#map {
+    height: 100% ; width: 40%;
+
+}
+
+.searchboxcontainer {
+  width: 350px;
+  height: 400px;
+  background-color: rgba(131, 131, 131, 0.68);
+  z-index: 4;
+  position:absolute;;
+  top: 0;
+  left: 0;
+}
+
+#search-container {
+  margin: 20px 0 20px 20px;
+  display:inline-block;
+  /*border: 1px solid rgb(83, 136, 215);*/
+  border: none;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+  align-content: center;
+  background-color: rgb(255, 255, 255);
+  -webkit-box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
+  box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
+  /*width: 200px;*/
+}
+
+#search-container input {
+  position: relative;
+  margin: 8px 0 0 8px;
+  background-color: transparent;
+  border: 0 solid;
+  font-size: 24px;
+  color: #676666;
+}
+#search-container button{
+  margin: 4px 4px 4px 4px;
+  padding: 0 6px 0 8px;
+  float: right;
+  width: 40px;
+  height: 40px;;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  border-spacing: 4px 4px 4px 4px;
+  background: url("../images/search_click.png");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#search-container button:hover{
+  background: url("../images/search_hover.png");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#search-container button:active {
+  background: url("../images/search.png");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: 0 !important;
+}
+
+button:enabled {
+  outline: 0 !important;
+
+}
+
+textarea:focus, input:focus{
+    outline: 0;
+}
+
+
+ul {
+  list-style-type:none;
+  list-style-position:outside;
+
+}
+/*#floating-panel {
+    position: absolute;
+    top: 70px;
+    left: 35%;
+    z-index: 10;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 50px;
+    padding-left: 10px;
+}
+
+#locationField, #controls {
+  position: relative;
+  width: 480px;
+}
+#autocomplete {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 99%;
+}
+.label {
+  text-align: right;
+  font-weight: bold;
+  width: 100px;
+  color: #303030;
+}
+#address {
+  border: 1px solid #000090;
+  background-color: #f0f0ff;
+  width: 480px;
+  padding-right: 2px;
+}
+#address td {
+  font-size: 10pt;
+}
+.field {
+  width: 99%;
+}
+.slimField {
+  width: 50px;
+}
+.wideField {
+  width: 200px;
+}
+#locationField {
+  height: 20px;
+  margin-bottom: 2px;
+}*/

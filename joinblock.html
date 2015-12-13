@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Join Block</title>
+  <link rel="stylesheet" href="style/joinblock.css">
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="JSScripts/blockfinder.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJcflEGoe0V_Le0yzEiYhosX6rwAeZhAY&callback=initMap&libraries=places"></script>
+</head>
+<body>
+
+  <div id="map"></div>
+  <section id="addresssec">
+    <form id="addressform">
+      <ul id="elem">
+        <li>
+          <div id="search-container">
+            <input type="search" name="" id="searchbox" placeholder="Search"><input type="button" id="srchbtn"></button>
+          </div>
+        </li>
+        <li>
+          <div id="hoodbox">
+            <select class="select-style" id="hoods_dropdown" name="neighbourhoods" onclick="hoods_change();">
+              <!-- <option value="volvo">Volvo</option> -->
+            </select>
+          </div>
+        </li>
+        <li>
+          <div id="blockbox">
+            <select class="select-style" id="blocks_dropdown" name="blocks" onclick="block_change();">
+              <!-- <option value="volvo">Volvo</option> -->
+            </select>
+          </div>
+        </li>
+        <li></li>
+      </ul>
+    </form>
+  </section>
+</body>
+</html>

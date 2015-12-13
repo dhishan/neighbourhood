@@ -1,0 +1,199 @@
+html, body {
+    height: 100%; padding: 0;
+}
+#map {
+    margin: 10px 0 0 10px ;
+    height: 100% ; width: 100%;
+
+}
+
+#addresssec {
+  /*width: 350px;*/
+  /*height: 400px;*/
+  background-color: rgba(131, 131, 131, 0.68);
+  z-index: 4;
+  position:absolute;;
+  top: 0;
+  left: 0;
+  padding: 10px 20px 10px 0;
+  margin: 10px 10px 0 18px ;
+}
+
+#search-container {
+  margin: 0 0 20px 0;
+  display:inline-block;
+  /*border: 1px solid rgb(83, 136, 215);*/
+  border: none;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+  align-content: center;
+  background-color: rgb(255, 255, 255);
+  -webkit-box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
+  box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
+  /*width: 200px;*/
+}
+
+
+
+#search-container input[type=search] {
+  position: relative;
+  margin: 4px 4px 4px 4px;
+  background-color: transparent;
+  border: 0 solid;
+  width: 300px;
+  height: 40px;;
+
+  font-size: 16px;
+  color: #676666;
+}
+#search-container input[type=button]{
+  margin: 4px 4px 4px 4px;
+  padding: 0 6px 0 8px;
+  float: right;
+  width: 40px;
+  height: 40px;;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  border-spacing: 4px 4px 4px 4px;
+  background: url("../images/search_click.png");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#search-container input[type=button]:hover{
+  background: url("../images/search_hover.png");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#search-container input[type=button]:active {
+  background: url("../images/search.png");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: 0 !important;
+}
+
+#hoodbox, #blockbox {
+  margin: 0 0 20px 0;
+  display:none;
+  /*border: 1px solid rgb(83, 136, 215);*/
+  border: none;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  align-content: center;
+  background-color: rgb(255, 255, 255);
+  -webkit-box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
+  box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
+  -webkit-transition: opacity 2s ease-out;
+    -o-transition: opacity 2s ease-out;
+    transition: opacity 2s ease-out;
+    transition: opacity 2s ease-out;
+      /*opacity: 0;*/
+
+}
+
+.select-style {
+  border: 0;
+    outline: none;
+    width: 356px;
+    height: 40px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+    font-size: 16px;
+    /*padding: 8px 8px 8px 8px;*/
+/*background: #fff url("http://www.scottgood.com/jsg/blog.nsf/images/arrowdown.gif") no-repeat 90% 50%;*/
+}
+
+.select-style select {
+    margin-left: 10px;
+
+    /*width: 130%;*/
+    /*border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;*/
+
+            -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+input[type=button]:enabled {
+  outline: 0 !important;
+
+}
+
+textarea:focus, input:focus{
+    outline: 0;
+}
+
+
+ul {
+  list-style-type:none;
+  list-style-position:outside;
+
+}
+/*#floating-panel {
+    position: absolute;
+    top: 70px;
+    left: 35%;
+    z-index: 10;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 50px;
+    padding-left: 10px;
+}
+
+#locationField, #controls {
+  position: relative;
+  width: 480px;
+}
+#autocomplete {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 99%;
+}
+.label {
+  text-align: right;
+  font-weight: bold;
+  width: 100px;
+  color: #303030;
+}
+#address {
+  border: 1px solid #000090;
+  background-color: #f0f0ff;
+  width: 480px;
+  padding-right: 2px;
+}
+#address td {
+  font-size: 10pt;
+}
+.field {
+  width: 99%;
+}
+.slimField {
+  width: 50px;
+}
+.wideField {
+  width: 200px;
+}
+#locationField {
+  height: 20px;
+  margin-bottom: 2px;
+}*/

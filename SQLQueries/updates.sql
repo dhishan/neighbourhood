@@ -58,3 +58,17 @@ RETURN val;
 END$$
 
 DELIMITER ;
+
+-- changing the order of the neighbourhood for insert
+ALTER TABLE `NextdoorDB`.`neighbourhood` 
+CHANGE COLUMN `nw_latitude` `nw_latitude` DECIMAL(9,6) NOT NULL AFTER `name`,
+CHANGE COLUMN `nw_longitude` `nw_longitude` DECIMAL(9,6) NOT NULL AFTER `nw_latitude`,
+CHANGE COLUMN `sw_latitude` `sw_latitude` DECIMAL(9,6) NOT NULL AFTER `se_longitude`,
+CHANGE COLUMN `sw_longitude` `sw_longitude` DECIMAL(9,6) NOT NULL AFTER `sw_latitude`;
+
+-- changing the order of the blocks for insert
+ALTER TABLE `NextdoorDB`.`blocks` 
+CHANGE COLUMN `nw_latitude` `nw_latitude` DECIMAL(9,6) NOT NULL AFTER `ne_longitude`,
+CHANGE COLUMN `nw_longitude` `nw_longitude` DECIMAL(9,6) NOT NULL AFTER `nw_latitude`,
+CHANGE COLUMN `sw_latitude` `sw_latitude` DECIMAL(9,6) NOT NULL AFTER `nw_longitude`,
+CHANGE COLUMN `se_latitude` `se_latitude` DECIMAL(9,6) NOT NULL AFTER `sw_longitude`;

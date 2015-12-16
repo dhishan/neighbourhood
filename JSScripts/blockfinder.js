@@ -3,11 +3,17 @@ var longitude;
 var map;
 var hoods;
 var blocks;
+var bermudaTriangle;
+
+
+    
 function initMap() {
      autocomplete = new google.maps.places.Autocomplete(
       /** @type {!HTMLInputElement} */(document.getElementById('searchbox')),
       {types: ['geocode']});
 
+
+    
 
     var myLatLng = {lat: 40.726931, lng: -73.992656};
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -99,6 +105,7 @@ function initMap() {
         });
     }
 
+
     function search_click() {
         //insert a combobox
         var hoodox_cont = document.getElementById('hoodbox');
@@ -118,8 +125,49 @@ function initMap() {
         //
     }
 
+    $('#hoods_dropdown').click(function(){
+        hoods_change();
+    });
 
+    $('#blocks_dropdown').click(function(){
+        //clear any already drawn bo
+        var option = $('#blocks_dropdown').find('option:selected').val();
+        for(var i =0; i<blocks.length;i++){
+        var obj = blocks[i];
+        if(obj.bid === option){
+            drawpolygon(obj);
+            //obj has all the co-ordinates for drawing
+            return;
+        }
+    }
+    });
 
+    function drawpolygon(obj){
+        if(bermudaTriangle)
+        {
+            bermudaTriangle.setMap(null);
+        }
+        
+            var triangleCoords = [
+        {lat: parseFloat(obj.nw_lat), lng: parseFloat(obj.nw_long)},
+        {lat: parseFloat(obj.ne_lat), lng: parseFloat(obj.ne_long)},
+        {lat: parseFloat(obj.se_lat), lng: parseFloat(obj.se_long)},
+        {lat: parseFloat(obj.sw_lat), lng: parseFloat(obj.sw_long)}
+
+      ];
+
+      bermudaTriangle = new google.maps.Polygon({
+        paths: triangleCoords,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35
+      });
+      bermudaTriangle.setMap(map);
+        
+    }
+    
 }
 
 function hoods_change(){
@@ -142,14 +190,3 @@ function hoods_change(){
     // $('#showoption').val(option);
 }
 
-function block_change(){
-    //clear any already drawn bo
-    var option = $('#blocks_dropdown').find('option:selected').val();
-    for(var i =0; i<blocks.length;i++){
-        var obj = blocks[i];
-        if(obj.bid === option){
-            //obj has all the co-ordinates for drawing
-            return;
-        }
-    }
-}

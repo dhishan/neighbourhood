@@ -73,10 +73,13 @@ function initMap() {
                 document.getElementById('searchbox').value= results[0].formatted_address;
               //  var latty=getCenter();
                // var latty1=latty.lat();
-                var NewMapCenter = map.getCenter();
+               console.log(results[0].geometry.location);
+               var NewMapCenter = map.getCenter();
                 latitude = NewMapCenter.lat();
                 longitude = NewMapCenter.lng();
-
+                console.log(latitude+" "+longitude);
+                
+                search_click();
 
             } else {
               alert('Geocode was not successful for the following reason: ' + status);
@@ -94,10 +97,12 @@ function initMap() {
                 marker.setPosition(results[0].geometry.location);
                 infowindow.setContent(results[0].formatted_address);
                 infowindow.open(map, marker);
+                console.log(results[0].geometry.location);
                 var NewMapCenter = map.getCenter();
                 latitude = NewMapCenter.lat();
                 longitude = NewMapCenter.lng();
                 //post the results to php file
+                console.log(latitude+" "+longitude);
                 search_click();
             } else {
               alert('Geocode was not successful for the following reason: ' + status);
@@ -108,12 +113,16 @@ function initMap() {
 
     function search_click() {
         //insert a combobox
-        var hoodox_cont = document.getElementById('hoodbox');
-        hoodox_cont.style.display = "inline-block";
         $('#hoods_dropdown').empty();
         //get the neighbourhood and display all the neighbourhoods in the table
         $.post("phpScripts/blockFinder.php",{lat:latitude,long:longitude}, function(data){
             hoods = $.parseJSON(data);
+            if(hoods.length === 0){
+                return;
+            }
+            var hoodox_cont = document.getElementById('hoodbox');
+            hoodox_cont.style.display = "inline-block";
+
             for(var i =0; i<hoods.length;i++){
                 var obj = hoods[i];
                 var hood_name = obj.name;
@@ -172,12 +181,20 @@ function initMap() {
 
 function hoods_change(){
     /* setting currently changed option value to option variable */
-    var block_cont = document.getElementById('blockbox');
-    block_cont.style.display = "inline-block";
     $('#blocks_dropdown').empty();
     var option = $('#hoods_dropdown').find('option:selected').val();
+    if(option === ""){
+        return;
+    }
     $.post("phpScripts/blockFinder.php",{lat:latitude,long:longitude,hoodid:option}, function(data){
         blocks = $.parseJSON(data);
+        if(blocks.length === 0){
+            //
+            return;
+        }
+        var block_cont = document.getElementById('blockbox');
+        block_cont.style.display = "inline-block";
+
         for(var i =0; i<blocks.length;i++){
             var obj = blocks[i];
             var block_name = obj.name;

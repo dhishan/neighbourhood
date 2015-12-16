@@ -18,7 +18,7 @@ catch(PDOException $exception){
 }
 	if($stmp_login->fetchColumn()){
 			echo "true";
-			$_SESSION[uname] =  $username1;
+			$_SESSION['uname'] =  $username1;
 	}
 	else {
 			echo "false";

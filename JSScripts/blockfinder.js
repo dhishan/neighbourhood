@@ -4,22 +4,15 @@ var map;
 var hoods;
 var blocks;
 var bermudaTriangle;
-var formatted_adr;
-var componentForm = {
-  street_number: 'short_name',
-  route: 'long_name',
-  locality: 'long_name',
-  administrative_area_level_1: 'short_name',
-  country: 'long_name',
-  postal_code: 'short_name'
-};
 
 
-    
+
 function initMap() {
      autocomplete = new google.maps.places.Autocomplete(
       /** @type {!HTMLInputElement} */(document.getElementById('searchbox')),
       {types: ['geocode']});
+
+
 
 
     var myLatLng = {lat: 40.726931, lng: -73.992656};
@@ -79,13 +72,13 @@ function initMap() {
                 infowindow.setContent(results[0].formatted_address);
                 infowindow.open(map, marker);
                 document.getElementById('searchbox').value= results[0].formatted_address;
-            
+
                console.log(results[0].geometry.location);
                var NewMapCenter = map.getCenter();
                 latitude = event.latLng.lat();
                 longitude = event.latLng.lng();
                 console.log(latitude+" "+longitude);
-                
+
                 search_click();
                 bermudaTriangle.setMap(null);
 
@@ -106,7 +99,7 @@ function initMap() {
         geocoder.geocode({'address': address}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 formatted_adr = results[0].address_components;
-            
+
                 resultsMap.setCenter(results[0].geometry.location);
                 marker.setPosition(results[0].geometry.location);
                 infowindow.setContent(results[0].formatted_address);
@@ -139,7 +132,7 @@ function initMap() {
             if(hoods.length === 0){
                 return;
             }
-            
+
             hoodox_cont.style.display = "inline-block";
 
             for(var i =0; i<hoods.length;i++){
@@ -148,7 +141,7 @@ function initMap() {
                 $('#hoods_dropdown').append($("<option></option>").attr("value",obj.nid).text(hood_name));
             }
             hoods_change();
-         
+
 
             //trigger an select event
         });
@@ -158,11 +151,23 @@ function initMap() {
     $('#hoods_dropdown').change(function(){
         hoods_change();
     });
-    
+
     $('#btn').click(function(){
         submitclk();
     });
 
+    $('#blocks_dropdown').click(function(){
+        //clear any already drawn bo
+        var option = $('#blocks_dropdown').find('option:selected').val();
+        for(var i =0; i<blocks.length;i++){
+        var obj = blocks[i];
+        if(obj.bid === option){
+            drawpolygon(obj);
+            //obj has all the co-ordinates for drawing
+            return;
+        }
+    }
+    });
 
     $('#blocks_dropdown').change(function(){
         //clear any already drawn bo
@@ -173,7 +178,7 @@ function initMap() {
             drawpolygon(obj);
             var btn_cont = document.getElementById('btn');
             btn_cont.style.display = "inline-block";
-        
+
             return;
         }
     }
@@ -184,7 +189,7 @@ function initMap() {
         {
             bermudaTriangle.setMap(null);
         }
-        
+
             var triangleCoords = [
         {lat: parseFloat(obj.nw_lat), lng: parseFloat(obj.nw_long)},
         {lat: parseFloat(obj.ne_lat), lng: parseFloat(obj.ne_long)},
@@ -202,7 +207,7 @@ function initMap() {
         fillOpacity: 0.35
       });
       bermudaTriangle.setMap(map);
-        
+
     }
 
     function submitclk(){
@@ -219,7 +224,7 @@ function initMap() {
     for (var i = 0; i < formatted_adr.length; i++) {
     // var addressType = formatted_adr[i].types[0];
         console.log(formatted_adr[i].long_name);
-        console.log(formatted_adr[i].types[0]);   
+        console.log(formatted_adr[i].types[0]);
         switch(formatted_adr[i].types[0]){
             case "street_number": street_number = formatted_adr[i].long_name;
             break;
@@ -235,18 +240,18 @@ function initMap() {
             break;
 
         }
-      
+
     }
 
     $.post("phpScripts/blockFinder.php",{join:"1",streetadr1:street_number+" "+address1,streetadr2:address2,state:state,zip:zip,city:city,lat:latitude,long:longitude}, function(data){
             //navigate to home page
-            
+
             alert("successful");
         });
 
     }
 
-    
+
 }
 
 function hoods_change(){
@@ -264,7 +269,7 @@ function hoods_change(){
             //
             return;
         }
-      
+
         block_cont.style.display = "inline-block";
 
         for(var i =0; i<blocks.length;i++){
@@ -279,6 +284,3 @@ function hoods_change(){
     /* setting input box value to selected option value */
      $('#showoption').val(option);
 }
-
-
-

@@ -184,31 +184,6 @@ function initMap() {
     }
     });
 
-    function drawpolygon(obj){
-        if(bermudaTriangle)
-        {
-            bermudaTriangle.setMap(null);
-        }
-
-            var triangleCoords = [
-        {lat: parseFloat(obj.nw_lat), lng: parseFloat(obj.nw_long)},
-        {lat: parseFloat(obj.ne_lat), lng: parseFloat(obj.ne_long)},
-        {lat: parseFloat(obj.se_lat), lng: parseFloat(obj.se_long)},
-        {lat: parseFloat(obj.sw_lat), lng: parseFloat(obj.sw_long)}
-
-      ];
-
-      bermudaTriangle = new google.maps.Polygon({
-        paths: triangleCoords,
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 3,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35
-      });
-      bermudaTriangle.setMap(map);
-
-    }
 
     function submitclk(){
     //format the address from the search bar
@@ -251,6 +226,44 @@ function initMap() {
 
     }
 
+    $('#blocks_dropdown').click(function(){
+        //clear any already drawn bo
+        var option = $('#blocks_dropdown').find('option:selected').val();
+        for(var i =0; i<blocks.length;i++){
+        var obj = blocks[i];
+        if(obj.bid === option){
+            drawpolygon(obj);
+            //obj has all the co-ordinates for drawing
+            return;
+        }
+    }
+    });
+
+    function drawpolygon(obj){
+        if(bermudaTriangle)
+        {
+            bermudaTriangle.setMap(null);
+        }
+
+            var triangleCoords = [
+        {lat: parseFloat(obj.nw_lat), lng: parseFloat(obj.nw_long)},
+        {lat: parseFloat(obj.ne_lat), lng: parseFloat(obj.ne_long)},
+        {lat: parseFloat(obj.se_lat), lng: parseFloat(obj.se_long)},
+        {lat: parseFloat(obj.sw_lat), lng: parseFloat(obj.sw_long)}
+
+      ];
+
+      bermudaTriangle = new google.maps.Polygon({
+        paths: triangleCoords,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35
+      });
+      bermudaTriangle.setMap(map);
+
+    }
 
 }
 

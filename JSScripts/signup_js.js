@@ -68,7 +68,20 @@ $(document).ready(function() {
         console.log(e);
       }
 
+  $('#btn').click(function(){
+    //check if all the input fields are valid
 
+    var username = $('#name').val();
+    var emailv = $('#email').val();
+    var fullnamev = $('#fullname').val();
+    var passwordv = $('#password').val();
+    $.post("phpScripts/signup_validity.php",{signup:"1",uname:username,email:emailv,fullname:fullnamev,password:passwordv},function(data){
+      window.location = "joinblock.html"; // Redirecting to other page.
+      return false;
+    });
+      
+    
+  });
 
 
 

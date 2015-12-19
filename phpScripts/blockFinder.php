@@ -13,7 +13,7 @@ $point ="$longitude $latitude";
 $pointLocation = new pointLocation();
 
 
-if(!(isset($_POST['hoodid']))){
+if((isset($_POST['nhoodid']))){
   $nquery = "SELECT * FROM neighbourhood;";
   $res = $conn->query($nquery);
   $hoods = array();
@@ -37,10 +37,10 @@ if(!(isset($_POST['hoodid']))){
     }
   }
   echo (json_encode($hoods));
-}else{
+  die();
+}else if(isset($_POST['hoodid'])){
   //find block in the selected neighbourhood
   $hoodid = $_POST['hoodid'];
-  $hoodid = 100;
   $bquery = "SELECT * FROM `blocks` where nid = ".$hoodid;
   $bres = $conn->query($bquery);
   $blocks = array();
@@ -62,7 +62,20 @@ if(!(isset($_POST['hoodid']))){
     if($lies == "inside" or $lies == "boundary" or $lies == "vertex"){
       $blocks[] = array("bid"=>"$bid","name"=>"$name","ne_long"=>"$ne_long","ne_lat"=>"$ne_lat","se_long"=>"$se_long","se_lat"=>"$se_lat","sw_long"=>"$sw_long","sw_lat"=>"$sw_lat","nw_lat"=>"$nw_lat","nw_long"=>"$nw_long");
     }
+  }
+
+  echo (json_encode($blocks));
+}else if(isset($_POST['join'])){
+  $uid = $_SESSION['uid'];
+  //$uid='21';
+  $userupdate="UPDATE `nextdoordb`.`user` SET `streetadr1` = :streetadr1,`streetadr2` = :streetadr2,`city` = :city ,`state` = :state ,`zip` = :zip  WHERE `uid` = '".$uid."'"; 
+  $stmp_signup_update= $conn->prepare($userupdate);
+  $stmp_signup_update->bindParam(':streetadr1',$_POST['streetadr1'],PDO::PARAM_STR,40);
+  $stmp_signup_update->bindParam(':streetadr2',$_POST['streetadr2'],PDO::PARAM_STR,40);
+  $stmp_signup_update->bindParam(':city',$_POST['city'],PDO::PARAM_STR,30);
+  $stmp_signup_update->bindParam(':state',$_POST['state'],PDO::PARAM_STR,20);
+  $stmp_signup_update->bindParam(':zip',$_POST['zip'],PDO::PARAM_INT,5);
+  $stmp_signup_update->execute();
 }
-    echo (json_encode($blocks));
-}
+
 ?>

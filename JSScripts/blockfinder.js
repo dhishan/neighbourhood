@@ -3,6 +3,19 @@ var longitude;
 var map;
 var hoods;
 var blocks;
+var bermudaTriangle;
+var formatted_adr;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+
+    
 function initMap() {
      autocomplete = new google.maps.places.Autocomplete(
       /** @type {!HTMLInputElement} */(document.getElementById('searchbox')),
@@ -61,19 +74,20 @@ function initMap() {
         myLatLng = {lat: event.latLng.lat(), lng: event.latLng.lng()};
         geocoder.geocode({'location': myLatLng}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
+                formatted_adr = results[0].address_components;
                 marker.setPosition(results[0].geometry.location);
                 infowindow.setContent(results[0].formatted_address);
                 infowindow.open(map, marker);
                 document.getElementById('searchbox').value= results[0].formatted_address;
-              //  var latty=getCenter();
-               // var latty1=latty.lat();
+            
                console.log(results[0].geometry.location);
                var NewMapCenter = map.getCenter();
-                latitude = NewMapCenter.lat();
-                longitude = NewMapCenter.lng();
+                latitude = event.latLng.lat();
+                longitude = event.latLng.lng();
                 console.log(latitude+" "+longitude);
                 
                 search_click();
+                bermudaTriangle.setMap(null);
 
             } else {
               alert('Geocode was not successful for the following reason: ' + status);
@@ -82,11 +96,17 @@ function initMap() {
         console.log(myLatLng);
         marker.setPosition(myLatLng);
         marker.setMap(map);
+
+
+
+
     });
     function geocodeAddress(geocoder,resultsMap,infowindow) {
         var address = document.getElementById('searchbox').value;
         geocoder.geocode({'address': address}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
+                formatted_adr = results[0].address_components;
+            
                 resultsMap.setCenter(results[0].geometry.location);
                 marker.setPosition(results[0].geometry.location);
                 infowindow.setContent(results[0].formatted_address);
@@ -104,16 +124,22 @@ function initMap() {
         });
     }
 
+
     function search_click() {
         //insert a combobox
+        var hoodox_cont = document.getElementById('hoodbox');
+        hoodox_cont.style.display = "none";
+        var block_cont = document.getElementById('blockbox');
+        block_cont.style.display = "none";
+        //hide the button
         $('#hoods_dropdown').empty();
         //get the neighbourhood and display all the neighbourhoods in the table
-        $.post("phpScripts/blockFinder.php",{lat:latitude,long:longitude}, function(data){
+        $.post("phpScripts/blockFinder.php",{lat:latitude,long:longitude,nhoodid:"1"}, function(data){
             hoods = $.parseJSON(data);
             if(hoods.length === 0){
                 return;
             }
-            var hoodox_cont = document.getElementById('hoodbox');
+            
             hoodox_cont.style.display = "inline-block";
 
             for(var i =0; i<hoods.length;i++){
@@ -121,18 +147,112 @@ function initMap() {
                 var hood_name = obj.name;
                 $('#hoods_dropdown').append($("<option></option>").attr("value",obj.nid).text(hood_name));
             }
-            $('#hoods_dropdown').trigger("click");
+            hoods_change();
+         
+
             //trigger an select event
         });
         //
     }
 
+    $('#hoods_dropdown').change(function(){
+        hoods_change();
+    });
+    
+    $('#btn').click(function(){
+        submitclk();
+    });
 
 
+    $('#blocks_dropdown').change(function(){
+        //clear any already drawn bo
+        var option = $('#blocks_dropdown').find('option:selected').val();
+        for(var i =0; i<blocks.length;i++){
+        var obj = blocks[i];
+        if(obj.bid === option){
+            drawpolygon(obj);
+            var btn_cont = document.getElementById('btn');
+            btn_cont.style.display = "inline-block";
+        
+            return;
+        }
+    }
+    });
+
+    function drawpolygon(obj){
+        if(bermudaTriangle)
+        {
+            bermudaTriangle.setMap(null);
+        }
+        
+            var triangleCoords = [
+        {lat: parseFloat(obj.nw_lat), lng: parseFloat(obj.nw_long)},
+        {lat: parseFloat(obj.ne_lat), lng: parseFloat(obj.ne_long)},
+        {lat: parseFloat(obj.se_lat), lng: parseFloat(obj.se_long)},
+        {lat: parseFloat(obj.sw_lat), lng: parseFloat(obj.sw_long)}
+
+      ];
+
+      bermudaTriangle = new google.maps.Polygon({
+        paths: triangleCoords,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35
+      });
+      bermudaTriangle.setMap(map);
+        
+    }
+
+    function submitclk(){
+    //format the address from the search bar
+    //into fields str adr1, str adr2, city, state and zip
+    //post address and bid
+    // console.log(formatted_adr);
+    var street_number="";
+    var address1="";
+    var address2="";
+    var state = "";
+    var city = "";
+    var zip=0;
+    for (var i = 0; i < formatted_adr.length; i++) {
+    // var addressType = formatted_adr[i].types[0];
+        console.log(formatted_adr[i].long_name);
+        console.log(formatted_adr[i].types[0]);   
+        switch(formatted_adr[i].types[0]){
+            case "street_number": street_number = formatted_adr[i].long_name;
+            break;
+            case "route": address1 = formatted_adr[i].long_name;
+            break;
+            case "neighborhood": address2 = formatted_adr[i].long_name;
+            break;
+            case "administrative_area_level_1": state = formatted_adr[i].long_name;
+            break;
+            case "locality": city = formatted_adr[i].long_name;
+            break;
+            case "postal_code": zip = parseInt(formatted_adr[i].long_name);
+            break;
+
+        }
+      
+    }
+
+    $.post("phpScripts/blockFinder.php",{join:"1",streetadr1:street_number+" "+address1,streetadr2:address2,state:state,zip:zip,city:city,lat:latitude,long:longitude}, function(data){
+            //navigate to home page
+            
+            alert("successful");
+        });
+
+    }
+
+    
 }
 
 function hoods_change(){
     /* setting currently changed option value to option variable */
+    var block_cont = document.getElementById('blockbox');
+        block_cont.style.display = "none";
     $('#blocks_dropdown').empty();
     var option = $('#hoods_dropdown').find('option:selected').val();
     if(option === ""){
@@ -144,29 +264,21 @@ function hoods_change(){
             //
             return;
         }
-        var block_cont = document.getElementById('blockbox');
+      
         block_cont.style.display = "inline-block";
 
         for(var i =0; i<blocks.length;i++){
             var obj = blocks[i];
             var block_name = obj.name;
             $('#blocks_dropdown').append($("<option></option>").attr("value",obj.bid).text(block_name));
+       // $('#blocks_dropdown').trigger("change");
         }
-        $('#blocks_dropdown').trigger("click");
+        $('#blocks_dropdown').trigger('change');
         //trigger an select event
     });
     /* setting input box value to selected option value */
-    // $('#showoption').val(option);
+     $('#showoption').val(option);
 }
 
-function block_change(){
-    //clear any already drawn bo
-    var option = $('#blocks_dropdown').find('option:selected').val();
-    for(var i =0; i<blocks.length;i++){
-        var obj = blocks[i];
-        if(obj.bid === option){
-            //obj has all the co-ordinates for drawing
-            return;
-        }
-    }
-}
+
+

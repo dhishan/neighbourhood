@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Neighbour</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="style/bootstrap.min.css" rel="stylesheet">
+  <link href="style/home.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="style/sb-admin.css" rel="stylesheet">
+
+  <!-- Morris Charts CSS -->
+  <link href="style/plugins/morris.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="home.html">Neighbour</a>
+      </div>
+      <!-- Top Menu Items -->
+      <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+          <ul class="dropdown-menu message-dropdown">
+            <li class="message-preview">
+              <a href="#">
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading">
+                      <strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-preview">
+              <a href="#">
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading">
+                      <strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-preview">
+              <a href="#">
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading">
+                      <strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-footer">
+              <a href="#">Read All New Messages</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+          <ul class="dropdown-menu alert-dropdown">
+            <li>
+              <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#">View All</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" id="user_fullname"></i><b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="javascript:void(0)" id="profile_click"><i class="fa fa-fw fa-user"></i> Profile</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+
+          <li>
+            <a href="#"><i class="fa fa-fw fa-dashboard" id="friends_navig"></i> Home</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Friends</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-fw fa-edit"></i> Neighbours</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+
+      <!-- Profile Page -->
+      <div class="container-fluid" id="profile_pg">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header" id="user_fullname_profile"></h1>
+          </div>
+        </div>
+        <div class="row">
+          <!-- div's inside this class are in a single row -->
+          <div class="col-lg-6">
+
+            <form role="form">
+
+              <div class="form-group">
+                <label>Username</label>
+                <input class="form-control" id="uname" type="text" placeholder="" disabled>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" id="email" type="text" placeholder="" disabled>
+              </div>
+              <div class="form-group">
+                <label>Full Name</label>
+                <input class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label>Intro</label>
+                <textarea class="form-control" rows="3" id="intro"></textarea>
+              </div>
+            </form>
+
+          </div>
+          <div class="col-lg-6">
+
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+      </div>
+      <!-- profile page end -->
+      <!-- home page -->
+      <div class="container-fluid" id="home">
+        <!-- Page Heading -->
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header">
+              Have a wonderful day
+              <small id="user_home"></small>
+            </h1>
+          </div>
+        </div>
+        <!-- /.row -->
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="tabs_home">
+          <li class="active"><a data-toggle="tab" href="#neighbourhood_tab" id="neighbourhood_tab_name">Neighbourhood</a></li>
+          <li><a data-toggle="tab" href="#block_tab" id="blocks_tab_name">Block</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="neighbourhood_tab">
+            <!-- Thread reply -->
+            <p></p>
+            <div class="row thread_post" id="thread_container_0">
+              <div class="col-md-10">
+                <h3 class="text-left text-muted" id="thread_title">
+                </h3>
+                <p id="thread_Body">
+                </p>
+                </p>
+                <a id="modal-584483" href="#modal-container-584483" role="button" class="btn" data-toggle="modal">Reply</a>
+                <div class="modal fade" id="modal-container-584483" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                          ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                          Reply
+                        </h4>
+                      </div>
+                      <div class="modal-body">
+                        <textarea class="form-control" rows="3" id="reply_content"></textarea>
+                      </div>
+                      <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                          Close
+                        </button>
+                        <button type="button" class="btn btn-primary" id="Modal_save_reply">
+                          Save changes
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="panel-group" id="panel-0">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <a class="panel-title collapsed message-title" data-toggle="collapse" data-parent="#panel-0" href="#panel-element-1" id="message-title"></a>
+                    </div>
+                    <div id="panel-element-1" class="panel-collapse collapse in">
+                      <div class="panel-body message-body" id="message-body">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-circle">
+              </div>
+
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="block_tab">
+            <p></p>
+            <div class="row thread_post" id="thread_container_0">
+              <div class="col-md-10">
+                <h3 class="text-left text-muted" id="thread_title">
+                </h3>
+                <p id="thread_Body">
+                </p>
+                </p>
+                <a id="modal-584483" href="#modal-container-584483" role="button" class="btn" data-toggle="modal">Reply</a>
+                <div class="modal fade" id="modal-container-584483" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                          ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                          Reply
+                        </h4>
+                      </div>
+                      <div class="modal-body">
+                        <textarea class="form-control" rows="3" id="reply_content"></textarea>
+                      </div>
+                      <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                          Close
+                        </button>
+                        <button type="button" class="btn btn-primary" id="Modal_save_reply">
+                          Save changes
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="panel-group" id="panel-0">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <a class="panel-title collapsed message-title" data-toggle="collapse" data-parent="#panel-0" href="#panel-element-1" id="message-title"></a>
+                    </div>
+                    <div id="panel-element-1" class="panel-collapse collapse in">
+                      <div class="panel-body message-body" id="message-body">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-circle">
+              </div>
+
+            </div>
+          </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="JSScripts/jquery.js"></script>
+    <script src="JSScripts/bootstrap.min.js"></script>
+    <script src="JSScripts/home.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+
+    <!-- Morris Charts JavaScript -->
+    <script src="JSScripts/plugins/morris/raphael.min.js"></script>
+    <script src="JSScripts/plugins/morris/morris.min.js"></script>
+    <script src="JSScripts/plugins/morris/morris-data.js"></script>
+</body>
+
+</html>

@@ -8,8 +8,7 @@ function validatefunc(){
       $('#errorsignup').html("Invalid username or password");
     }
     else {
-      alert("Login successfully");
-      window.location = "login1.html"; // Redirecting to other page.
+      window.location = "home.html"; // Redirecting to other page.
       return false;
     }
   });

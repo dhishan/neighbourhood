@@ -1,0 +1,13 @@
+#profile_pg{
+  display: none;
+}
+#thread_container_0{
+  display: none;
+}
+#panel-0 {
+  display: none;
+}
+.thread_post{
+  -webkit-box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
+box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
+}

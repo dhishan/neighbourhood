@@ -51,6 +51,7 @@
       </div>
       <!-- Top Menu Items -->
       <ul class="nav navbar-right top-nav">
+        <!-- dropdown of messages -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
           <ul class="dropdown-menu message-dropdown">
@@ -107,55 +108,38 @@
             </li>
           </ul>
         </li>
+        <!-- end dropdown of messages -->
+        <!-- Menu of the Notifications table -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-          <ul class="dropdown-menu alert-dropdown">
-            <li>
-              <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-            </li>
-            <li>
-              <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-            </li>
-            <li>
-              <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-            </li>
-            <li>
-              <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-            </li>
-            <li>
-              <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-            </li>
-            <li>
-              <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a href="#">View All</a>
-            </li>
+          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" id="notification-click"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+          <ul class="dropdown-menu alert-dropdown" id="alert-dropdown">
           </ul>
         </li>
+        <!-- End Menu of the Notifications table -->
+        <!-- Dropdown of the user table -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" id="user_fullname"></i><b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user username-disp" id="user_fullname"></i><b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li>
               <a href="javascript:void(0)" id="profile_click"><i class="fa fa-fw fa-user"></i> Profile</a>
             </li>
             <li class="divider"></li>
             <li>
-              <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+              <a href="" onclick="logoutt();"><i class="fa fa-fw fa-power-off" id="logout"></i> Log Out</a>
             </li>
           </ul>
         </li>
+        <!-- End Dropdown of the user table -->
       </ul>
       <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
 
           <li>
-            <a href="#"><i class="fa fa-fw fa-dashboard" id="friends_navig"></i> Home</a>
+            <a href="javascript:void(0);" onclick="load_home();"><i class="fa fa-fw fa-dashboard" id="friends_navig"></i> Home</a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Friends</a>
+            <a href="javascript:void(0);" onclick="load_friend();"><i class="fa fa-fw fa-bar-chart-o"></i> Friends</a>
           </li>
           <li>
             <a href="#"><i class="fa fa-fw fa-edit"></i> Neighbours</a>
@@ -172,7 +156,7 @@
 
         <div class="row">
           <div class="col-lg-12">
-            <h1 class="page-header" id="user_fullname_profile"></h1>
+            <h1 class="page-header username-disp" id="user_fullname_profile"></h1>
           </div>
         </div>
         <div class="row">
@@ -197,10 +181,24 @@
                 <label>Intro</label>
                 <textarea class="form-control" rows="3" id="intro"></textarea>
               </div>
+              <div class="form-group">
+                <label>Current Block</label>
+                <input class="form-control" id="block" type="text" placeholder="" disabled>
+              </div>
+              <div class="form-group">
+                <input class="form-control" id="leaveblock" type="button" value="Leave Block">
+              </div>
+
             </form>
 
           </div>
           <div class="col-lg-6">
+            <div class="col-md-2">
+              <a href="#">
+                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+              </a>
+            </div>
+            <img class="center-block img-responsive thread_loc" src="" id="thread_loc">
 
           </div>
           <!-- /.container-fluid -->
@@ -208,6 +206,7 @@
       </div>
       <!-- profile page end -->
       <!-- home page -->
+
       <div class="container-fluid" id="home">
         <!-- Page Heading -->
         <div class="row">
@@ -227,129 +226,361 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
+          <!-- neighbourhood_tab -->
+
           <div role="tabpanel" class="tab-pane active" id="neighbourhood_tab">
-            <!-- Thread reply -->
             <p></p>
-            <div class="row thread_post" id="thread_container_0">
-              <div class="col-md-10">
-                <h3 class="text-left text-muted" id="thread_title">
-                </h3>
-                <p id="thread_Body">
-                </p>
-                </p>
-                <a id="modal-584483" href="#modal-container-584483" role="button" class="btn" data-toggle="modal">Reply</a>
-                <div class="modal fade" id="modal-container-584483" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                          ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                          Reply
-                        </h4>
+            <div class="section">
+              <div class="section">
+                <div class="col-md-10"><a href="javascript:void(0)" class="btn btn-primary" id="new-thread-display">New Post</a></div>
+              </div>
+              </br>
+              </br>
+              <div class="container" id="new-thread-container">
+                <form id="new-post" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col-md-8 text-left">
+                      <textarea class="form-control" rows="1" id="new-thread-subject" placeholder="Enter your Title here"></textarea>
+                      <textarea class="form-control" rows="5" id="new-thread-body" placeholder="Enter your message here"></textarea>
+                    </div>
+                    <div class="col-md-2">
+                      <input class="btn btn-primary" type="file" id="uploadfilen" />
+                      <a href="#">
+                        <canvas class="img-responsive" id="preview-img"></canvas>
+                      </a>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div role="form">
+                        <div class="form-group">
+                          <input class="form-control" id="latitude_new_post" placeholder="Latitude" type="text">
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" id="longitude_new_post" placeholder="Longitude" type="text">
+                        </div>
+                        <button type="button" class="btn btn-default" id="loc_open">Get Location</button>
                       </div>
-                      <div class="modal-body">
-                        <textarea class="form-control" rows="3" id="reply_content"></textarea>
-                      </div>
-                      <div class="modal-footer">
+                    </div>
+                    <div class="col-md-1 hidden-md hidden-xs"><a class="btn btn-primary" id="btn-create-thread">Post</a></div>
 
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                          Close
-                        </button>
-                        <button type="button" class="btn btn-primary" id="Modal_save_reply">
-                          Save changes
-                        </button>
+                  </div>
+                </form>
+              </div>
+              <div class="container" id="mapcontainer">
+                <div class="col-md-10">
+                  <div id="locationField">
+                    <input class="form-control" id="address" type="textbox" value="">
+                    <input class="btn btn-primary" id="mapit" type="submit" value="MAP IT">
+                  </div>
+                  <div>
+                    <div id="mapn"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section thread-post-sample thread_post" id="thread_container_0">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 text-left thread-hdng">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <h3 class="thread-title" id="thread_title">Thread Title</h3>
+                        <h5><i id="thread_by"></i></h5>
+                      </div>
+                    </div>
+                    <hr class="thread-sub-hr">
+                    <div class="container row">
+                      <div class="col-md-8 thread-body-div">
+                        <p class="thread-body" id="thread_Body">Thread_ Body</p>
+                        <hr class="thread-sub-hr">
+                        <div class="container row">
+                          <div class="col-md-8 text-left">
+                            <textarea class="form-control col-md-8" rows="2" id="thread-reply-new" placeholder="Enter your reply here"></textarea>
+                          </div>
+                          <div class="col-md-8 float-right reply-btn text-right" id=""><a class="btn btn-primary" id="reply-btn"><i class="fa fa-star fa-fw"></i>Reply</a>
+                            <!-- set the reply button a value -->
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                   </div>
-
+                  <div class="col-md-2 text-right">
+                    <img src="" class="center-block img-responsive img-thread img-thumbnail" id="thread_img">
+                    <img class="center-block img-responsive thread_loc" src="" id="thread_loc">
+                  </div>
                 </div>
-
-                <div class="panel-group" id="panel-0">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <a class="panel-title collapsed message-title" data-toggle="collapse" data-parent="#panel-0" href="#panel-element-1" id="message-title"></a>
-                    </div>
-                    <div id="panel-element-1" class="panel-collapse collapse in">
-                      <div class="panel-body message-body" id="message-body">
-                      </div>
-                    </div>
+                <div class="container row reply-post-sample reply-post" id="reply-0">
+                  <div class="col-md-2 reply-prsn">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive img-thumbnail">
+                  </div>
+                  <div class="container-fluid col-md-8">
+                    <h5 class="text-primary reply-prsn-name" id="message-title">Reply_person</h5>
+                    <hr class="msg-name-hr">
+                    <p id="message-body">Thread_reply-0</p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-2">
-                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-circle">
-              </div>
-
             </div>
           </div>
+          <!-- blocks_tab -->
           <div role="tabpanel" class="tab-pane" id="block_tab">
             <p></p>
-            <div class="row thread_post" id="thread_container_0">
-              <div class="col-md-10">
-                <h3 class="text-left text-muted" id="thread_title">
-                </h3>
-                <p id="thread_Body">
-                </p>
-                </p>
-                <a id="modal-584483" href="#modal-container-584483" role="button" class="btn" data-toggle="modal">Reply</a>
-                <div class="modal fade" id="modal-container-584483" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                          ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                          Reply
-                        </h4>
+            <div class="section">
+              <div class="section">
+                <div class="col-md-10"><a href="javascript:void(0)" class="btn btn-primary" id="new-thread-display">New Post</a></div>
+              </div>
+              </br>
+              </br>
+              <div class="container" id="new-thread-container">
+                <form id="new-post" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col-md-8 text-left">
+                      <textarea class="form-control" rows="1" id="new-thread-subject" placeholder="Enter your Title here"></textarea>
+                      <textarea class="form-control" rows="5" id="new-thread-body" placeholder="Enter your message here"></textarea>
+                    </div>
+                    <div class="col-md-2">
+                      <input class="btn btn-primary" type="file" id="uploadfileb" />
+                      <a href="#">
+                        <canvas class="img-responsive" id="preview-img"></canvas>
+                      </a>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div role="form">
+                        <div class="form-group">
+                          <input class="form-control" id="latitude_new_post" placeholder="Latitude" type="text">
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" id="longitude_new_post" placeholder="Longitude" type="text">
+                        </div>
+                        <button type="button" class="btn btn-default" id="loc_open">Get Location</button>
                       </div>
-                      <div class="modal-body">
-                        <textarea class="form-control" rows="3" id="reply_content"></textarea>
-                      </div>
-                      <div class="modal-footer">
+                    </div>
+                    <div class="col-md-1 hidden-md hidden-xs"><a class="btn btn-primary" id="btn-create-thread">Post</a></div>
 
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                          Close
-                        </button>
-                        <button type="button" class="btn btn-primary" id="Modal_save_reply">
-                          Save changes
-                        </button>
+                  </div>
+                </form>
+              </div>
+              <!-- <div class="container" id="mapcontainer">
+                  <div class="col-md-10">
+                    <div id="locationField1">
+                       <input class="form-control" id="address1" type="textbox" value=""/>
+                        <input class="btn btn-primary" id="mapit1" type="submit" value="MAP IT"/>
+                    </div>
+                    <div>
+                     <div id="mapb"></div>
+                    </div>
+                  </div>
+                </div> -->
+            </div>
+
+            <div class="section thread-post-sample thread_post" id="thread_container_0">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 text-left thread-hdng">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <h3 class="thread-title" id="thread_title">Thread Title</h3>
+                        <h5><i id="thread_by"></i></h5>
+                      </div>
+                    </div>
+                    <hr class="thread-sub-hr">
+                    <div class="container row">
+                      <div class="col-md-8 thread-body-div">
+                        <p class="thread-body" id="thread_Body">Thread_ Body</p>
+                        <hr class="thread-sub-hr">
+                        <div class="container row">
+                          <div class="col-md-8 text-left">
+                            <textarea class="form-control col-md-8" rows="2" id="thread-reply-new" placeholder="Enter your reply here"></textarea>
+                          </div>
+                          <div class="col-md-8 float-right reply-btn text-right" id=""><a class="btn btn-primary" id="reply-btn"><i class="fa fa-star fa-fw"></i>Reply</a>
+                            <!-- set the reply button a value -->
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                   </div>
-
+                  <div class="col-md-2 text-right">
+                    <img src="" class="center-block img-responsive img-thread img-thumbnail" id="thread_img">
+                    <img class="center-block img-responsive thread_loc" src="" id="thread_loc">
+                  </div>
                 </div>
-
-                <div class="panel-group" id="panel-0">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <a class="panel-title collapsed message-title" data-toggle="collapse" data-parent="#panel-0" href="#panel-element-1" id="message-title"></a>
-                    </div>
-                    <div id="panel-element-1" class="panel-collapse collapse in">
-                      <div class="panel-body message-body" id="message-body">
-                      </div>
-                    </div>
+                <div class="container row reply-post-sample reply-post" id="reply-0">
+                  <div class="col-md-2 reply-prsn">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive img-thumbnail">
+                  </div>
+                  <div class="container-fluid col-md-8">
+                    <h5 class="text-primary reply-prsn-name" id="message-title">Reply_person</h5>
+                    <hr class="msg-name-hr">
+                    <p id="message-body">Thread_reply-0</p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-2">
-                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-circle">
-              </div>
-
             </div>
           </div>
-          </div>
+          <!-- blocks-tab-end -->
         </div>
-
+        <!-- tab-content-end -->
 
       </div>
+
+      <div class="container-fluid" id="notification">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header username-disp" id="user_fullname_profile"></h1>
+          </div>
+        </div>
+        <div class="row" id="general_notification">
+          <div class="col-lg-12">
+            <h4 id="notiic_heading"></h4>
+            <span><i id="notiic_subheading"></i></span>
+          </div>
+          <hr>
+        </div>
+        <div class="row" id="m_req_head">
+          <div class="col-lg-12">
+            <h4>Block Membership Requests </h4>
+          </div>
+          <hr>
+          <div class="col-lg-8">
+          <ul class="list-group" id="memebershipreq">
+
+          </ul>
+        </div>
+        </div>
+        <div id="f_req_container">
+          <div class="row" id="f_req_head">
+            <div class="col-lg-12">
+              <h4>Friend Requests </h4>
+            </div>
+            <hr>
+          </div>
+          <div class="col-lg-8">
+            <h3 class="page-header" id="myfriends-hdr">Friend Request</h3>
+          </div>
+          <hr class="divider">
+          <div class="col-lg-8">
+          <ul class="list-group" id="myfriendreq">
+
+          </ul>
+        </div>
+        </div>
+
+      </div>
+
       <!-- /#page-wrapper -->
+
+      <div class="container-fluid" id="friends">
+        <div class="container row">
+          <div class="col-lg-10">
+            <h1 class="page-header" id="friend-pg-hdr">Its better with friends</h1>
+          </div>
+          <hr class="divider">
+        </div>
+        <div class="container row">
+          <div class="col-lg-8">
+            <h3 class="page-header" id="myfriends-hdr">My Friends</h3>
+          </div>
+          <hr class="divider">
+          <div class="col-lg-8">
+          <ul class="list-group" id="myfriendlist">
+
+          </ul>
+        </div>
+        </div>
+        <div class="container row">
+          <div class="col-lg-8">
+            <h3 class="page-header" id="myfriends-hdr">Search For Friends</h3>
+          </div>
+          <hr class="divider">
+          <div class="col-lg-8">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for people" id="friendkeyword">
+              <span class="input-group-btn">
+                <button class="btn btn-default" id="findfriendsbutton" onclick="search_friends();">Search!</button>
+              </span>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+          <div class="col-lg-8">
+          <ul class="list-group" id="friendsearchlist">
+
+          </ul>
+        </div>
+        </div>
+        <div class="container row">
+          <div class="col-lg-8">
+            <h3 class="page-header" id="myfriendmsg-hdr">Personnel Message</h3>
+          </div>
+          <hr class="divider">
+        </div>
+        <div class="col-lg-10" id="friend_thread">
+
+          <!-- Risky Part -->
+
+          <div class="section">
+            <div class="section">
+              <div class="col-md-10"><a href="javascript:void(0)" class="btn btn-primary" id="new-thread-display_f">New Post</a></div>
+            </div>
+            </br>
+            </br>
+            <div class="container" id="new-thread-container_f">
+              <form id="new-post" method="post" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-md-8 text-left">
+                    <textarea class="form-control" rows="1" id="tofield" placeholder="Enter userid"></textarea>
+                    <textarea class="form-control" rows="1" id="new-thread-subject_f" placeholder="Enter your Title here"></textarea>
+                    <textarea class="form-control" rows="5" id="new-thread-body_f" placeholder="Enter your message here"></textarea>
+                  </div>
+                  <div class="col-md-2">
+                    <input class="btn btn-primary" type="file" id="uploadfilen_f" />
+                    <a href="#">
+                      <canvas class="img-responsive" id="preview-img_f"></canvas>
+                    </a>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div role="form">
+                      <div class="form-group">
+                        <input class="form-control" id="latitude_new_post_f" placeholder="Latitude" type="text">
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" id="longitude_new_post_f" placeholder="Longitude" type="text">
+                      </div>
+                      <!-- <button type="button" class="btn btn-default" id="loc_open_f">Get Location</button> -->
+                    </div>
+                  </div>
+                  <div class="col-md-1 hidden-md hidden-xs"><a class="btn btn-primary" id="btn-create-thread_f">Post</a></div>
+
+                </div>
+              </form>
+            </div>
+            <!-- <div class="container" id="mapcontainer_f">
+              <div class="col-md-10">
+                <div id="locationField_f">
+                  <input class="form-control" id="address_f" type="textbox" value="">
+                  <input class="btn btn-primary" id="mapit_f" type="submit" value="MAP IT">
+                </div>
+                <div>
+                  <div id="map2"></div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+
+        <!-- Risky Part Ends Here -->
+
+        </div>
+      </div>
 
     </div>
     <!-- /#wrapper -->
@@ -358,6 +589,11 @@
     <script src="JSScripts/jquery.js"></script>
     <script src="JSScripts/bootstrap.min.js"></script>
     <script src="JSScripts/home.js"></script>
+    <script src="JSScripts/home_ext.js"></script>
+    <script src="JSScripts/friendtab.js"></script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJcflEGoe0V_Le0yzEiYhosX6rwAeZhAY&callback=initMap&libraries=places">
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
 

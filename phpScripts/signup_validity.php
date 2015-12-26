@@ -24,7 +24,7 @@ if(isset($_POST['signup'])){
   $stmp_signup->bindParam(':fullname',$_POST['fullname'],PDO::PARAM_STR,20);
   $stmp_signup->execute();
   //get the last inserted user id and save it in session variable
-  $insunq = "INSERT INTO `nextdoordb`.`user_login`(`uid`,`uname`,`password`,`last_login`) VALUES (last_insert_id(),:uname,:password,'CURRENT_TIMESTAMP')";
+  $insunq = "INSERT INTO `nextdoordb`.`user_login`(`uid`,`uname`,`password`,`last_login`) VALUES (last_insert_id(),:uname,:password,CURRENT_TIMESTAMP)";
   $stmp_signup1 = $conn->prepare($insunq);
   $stmp_signup1->bindParam(':uname',$_POST['uname'],PDO::PARAM_STR,10);
   $stmp_signup1->bindParam(':password',$_POST['password'],PDO::PARAM_STR,20);

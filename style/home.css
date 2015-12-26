@@ -1,13 +1,159 @@
-#profile_pg{
-  display: none;
-}
 #thread_container_0{
   display: none;
 }
-#panel-0 {
+
+#friends{
   display: none;
 }
-.thread_post{
-  -webkit-box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
-box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.4) ;
+#reply-0 {
+  display: none;
 }
+.reply-btn {
+  font-style: position absolute;
+  bottom: 0;
+  right: 0;
+}
+/*.img-thread {
+  font-size: 10;
+}*/
+.thread-body {
+  font-size: 14;
+}
+.thread-title{
+  margin: 10px 0px 5px 0px;
+}
+
+.thread-post-sample{
+  border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 1px solid #9e999e;
+}
+
+.thread-sub-hr, .msg-name-hr, .notification-hr{
+  -webkit-margin-before: 0.3em;
+    -webkit-margin-after: 0.3em;
+    -webkit-margin-start: auto;
+    -webkit-margin-end: auto;
+}
+
+#notification-from {
+  margin: 5px 0 3px 0;
+}
+.thread-body-div{
+  padding-left: 2px;
+  padding-right: 0;
+}
+.reply-post-sample{
+  margin-top: 10px;
+}
+#notific-0{
+  display: none;
+}
+#m_req_head {
+  display: none;
+}
+#f_req_head{
+  display: none;
+}
+#general_notification{
+  display: none;
+}
+reply-post-sample .img-thumbnail {
+  padding-left: 2px;
+  padding-right: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.reply-prsn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+.reply-prsn-name{
+  margin: 2px 0px 3px 0px;
+}
+.message-body-div{
+  padding-left: 2px;
+  padding-right: 0;
+}
+
+/*.img-thread, .thread_loc {
+  display: none;
+}*/
+
+
+
+
+
+#page-wrapper{
+  height: 100%;
+}
+
+
+/*Map geocode CSS*/
+#mapn, #mapd, #map2 {
+    display: none;
+    height: 300px ;
+    width: 100%;
+
+}
+
+#uploadfile {
+  width :160px;
+}
+
+#new-thread-container, #mapcontainer, #new-thread-container_f, #mapcontainer_f{
+  display: none;
+}
+#mapcontainer {
+  margin-top: 20px;
+}
+
+#btn-create-thread{
+  margin-top: 15px;
+  margin-left: 40px;
+  padding: 8px 24px 8px 24px;
+}
+
+
+#locationField, #controls {
+  position: relative;
+  width: 480px;
+}
+#autocomplete {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 99%;
+}
+.label {
+  text-align: right;
+  font-weight: bold;
+  width: 100px;
+  color: #303030;
+}
+#address {
+  border: 1px solid #000090;
+  background-color: #f0f0ff;
+  width: 480px;
+  padding-right: 2px;
+}
+#address td {
+  font-size: 10pt;
+}
+.field {
+  width: 99%;
+}
+.slimField {
+  width: 80px;
+}
+.wideField {
+  width: 200px;
+}
+#locationField {
+  height: 20px;
+  margin-bottom: 2px;
+}
+/*Map geocode CSS END*/

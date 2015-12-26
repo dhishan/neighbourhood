@@ -1,4 +1,9 @@
+var pvalid = false;
+var emailvalid = false;
+var unamevalid = false;
+
 $(document).ready(function() {
+
 
   $("#name").keyup(function() {
     unamevalid = false;
@@ -12,6 +17,7 @@ $(document).ready(function() {
           //user with that username already exists
           imd.src = "images/cross.png";
           $('#errormsguname').text("Username already exists");
+          unamevalid = false;
         }
         else {
           //check for alphanumeric
@@ -19,9 +25,11 @@ $(document).ready(function() {
           if(retvalid[0] === false){
             imd.src = "images/cross.png";
             $('#errormsguname').text(retvalid[1]);
+            unamevalid = false;
           } else {
             imd.src = "images/tick.png";
             $('#errormsguname').text("");
+            unamevalid = true;
           }
         }
       });
@@ -35,9 +43,11 @@ $(document).ready(function() {
     if($('#password').val() === $('#password_re').val()){
       imdp.src = "images/tick.png";
       $('#errormsgpassword_re').text("");
+      pvalid = true;
     }else {
       imdp.src = "images/cross.png";
       $('#errormsgpassword_re').text("Password Mismatch");
+      pvalid = false;
     }
   });
 
@@ -58,9 +68,11 @@ $(document).ready(function() {
           if(validateEmail($('#email').val())){
             imde.src = "images/tick.png";
             $('#errormsgemail').text("");
+            emailvalid = true;
           }else {
             imde.src = "images/cross.png";
             $('#errormsgemail').text("Invalid Email");
+            emailvalid = false;
           }
         }
       });
@@ -70,7 +82,12 @@ $(document).ready(function() {
 
   $('#btn').click(function(){
     //check if all the input fields are valid
-
+    if(!(pvalid && emailvalid && unamevalid)){
+      return;
+    }
+    if($('#fullname').val() === ""){
+      return;
+    }
     var username = $('#name').val();
     var emailv = $('#email').val();
     var fullnamev = $('#fullname').val();
@@ -79,8 +96,8 @@ $(document).ready(function() {
       window.location = "joinblock.html"; // Redirecting to other page.
       return false;
     });
-      
-    
+
+
   });
 
 
